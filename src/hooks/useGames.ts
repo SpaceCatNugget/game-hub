@@ -1,4 +1,4 @@
-import useData from "./UseData";
+import useData from "./useData";
 import { type Genre } from "./useGenres";
 
 export interface Platform {
