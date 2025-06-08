@@ -6,6 +6,6 @@ export interface Platform {
     slug: string;
 }
 
-const usePlatforms = (selectedPlatform: Platform | null) => useData<Platform>('/platforms/lists/parents', {params: { platforms: selectedPlatform?.id}}, [selectedPlatform?.id]);
+const usePlatforms = () => useData<Platform>('/platforms/lists/parents');
 
 export default usePlatforms;
