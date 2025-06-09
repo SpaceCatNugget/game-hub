@@ -3,8 +3,6 @@ import useGames from "@/hooks/useGames";
 import GameCard from "./GameCard";
 import GameCardSkeleton from "./GameCardSkeleton";
 import GameCardContainer from "./GameCardContainer";
-import { type Genre } from "@/hooks/useGenres";
-import { type Platform } from "@/hooks/usePlatforms";
 import { type GameQuery } from "@/App";
 
 interface Props {
