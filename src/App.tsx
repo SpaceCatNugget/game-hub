@@ -1,4 +1,11 @@
-import { Grid, GridItem, Show, Flex, Box } from "@chakra-ui/react";
+import {
+  Grid,
+  GridItem,
+  Show,
+  Flex,
+  Box,
+  useBreakpointValue,
+} from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
 import GameGrid from "./components/GameGrid";
 import GenreList from "./components/GenreList";
@@ -18,6 +25,11 @@ export interface GameQuery {
 
 function App() {
   const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
+
+  const genreDisplayMode = useBreakpointValue({
+    base: "drawer",
+    lg: "list",
+  }) as "drawer" | "list";
 
   return (
     <Grid
@@ -40,6 +52,7 @@ function App() {
           <GenreList
             selectedGenre={gameQuery.genre}
             onSelectGenre={(genre) => setGameQuery({ ...gameQuery, genre })}
+            displayMode="list"
           />
         </GridItem>
       </Show>
@@ -62,6 +75,15 @@ function App() {
               }
             />
           </Flex>
+          <Box marginTop={3}>
+            {genreDisplayMode === "drawer" && (
+              <GenreList
+                selectedGenre={gameQuery.genre}
+                onSelectGenre={(genre) => setGameQuery({ ...gameQuery, genre })}
+                displayMode="drawer"
+              />
+            )}
+          </Box>
         </Box>
         <GameGrid gameQuery={gameQuery} />
       </GridItem>
