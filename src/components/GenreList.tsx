@@ -10,6 +10,7 @@ import {
   Menu,
   MenuButton,
   MenuList,
+  MenuItem,
 } from "@chakra-ui/react";
 import { type Genre } from "@/hooks/useGenres";
 import { BsChevronDown } from "react-icons/bs";
@@ -62,7 +63,25 @@ const GenreList = ({ selectedGenre, onSelectGenre, displayMode }: Props) => {
       <MenuButton as={Button} rightIcon={<BsChevronDown />}>
         {selectedGenre?.name || "Genres"}
       </MenuButton>
-      <MenuList>{genreList}</MenuList>
+      <MenuList>
+        {data.map((genre) => (
+          <MenuItem
+            key={genre.id}
+            onClick={() => onSelectGenre(genre)}
+            icon={
+              <Image
+                boxSize="24px"
+                borderRadius={6}
+                objectFit="cover"
+                src={getCroppedImageUrl(genre.image_background)}
+                alt={genre.name}
+              />
+            }
+          >
+            {genre.name}
+          </MenuItem>
+        ))}
+      </MenuList>
     </Menu>
   );
 };
